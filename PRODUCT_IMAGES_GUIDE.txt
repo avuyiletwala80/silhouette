@@ -1,0 +1,373 @@
+================================================================================
+SILHOUETTE - PRODUCT IMAGES SETUP GUIDE
+Complete Step-by-Step Instructions
+================================================================================
+
+This guide explains exactly how to add the 12 product images to your SILHOUETTE
+website. No technical knowledge required!
+
+================================================================================
+OVERVIEW
+================================================================================
+
+The website is designed to display 12 fragrance product images. The HTML files
+already have placeholders for these images - you just need to add the actual
+JPG files to the images/ folder.
+
+The 12 products are:
+1. Imaginari Jacques Yves (R549) - Masculine
+2. Invicto (R449) - Masculine
+3. Brown Orchid (R799) - Unisex
+4. Million Royal (R699) - Masculine
+5. Intense Wayfarer (R649) - Masculine
+6. Venti (R699) - Masculine
+7. Delilah Pour Femme (R549) - Feminine
+8. Elysia Marshmallow (R499) - Feminine
+9. Pleasant (R449) - Feminine
+10. Mousuf Wardi (R549) - Feminine
+11. Dolores Pour Femme (R549) - Feminine
+12. Classy (R599) - Feminine
+
+================================================================================
+STEP 1: PREPARE YOUR IMAGES
+================================================================================
+
+Before adding images to the website, prepare them on your computer:
+
+1. Gather all 12 product images
+2. Ensure they are in JPG format (.jpg or .jpeg)
+3. Recommended image specifications:
+   - Minimum size: 400x400 pixels
+   - Recommended size: 600x600 pixels or larger
+   - Format: JPG/JPEG
+   - File size: 50KB - 500KB per image (for fast loading)
+
+4. Rename each image to match EXACTLY (case-sensitive):
+   ✓ imaginari.jpg
+   ✓ invicto.jpg
+   ✓ brown-orchid.jpg
+   ✓ million-royal.jpg
+   ✓ intense-wayfarer.jpg
+   ✓ venti.jpg
+   ✓ delilah.jpg
+   ✓ elysia.jpg
+   ✓ pleasant.jpg
+   ✓ mousuf.jpg
+   ✓ dolores.jpg
+   ✓ classy.jpg
+
+IMPORTANT: Use lowercase letters and hyphens (not underscores or spaces).
+The filenames must match EXACTLY as shown above.
+
+================================================================================
+STEP 2: LOCATE THE IMAGES FOLDER
+================================================================================
+
+The website has a folder structure like this:
+
+silhouette-html/
+├── index.html
+├── collection.html
+├── about.html
+├── contact.html
+├── styles.css
+├── scripts.js
+├── README.txt
+├── PRODUCT_IMAGES_GUIDE.txt (this file)
+└── images/                    ← This is where images go
+    ├── (empty - you add files here)
+
+The "images/" folder is where you'll place all 12 JPG files.
+
+================================================================================
+STEP 3: ADD IMAGES TO THE FOLDER (3 METHODS)
+================================================================================
+
+METHOD 1: FILE EXPLORER (Easiest for Windows/Mac)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Open File Explorer (Windows) or Finder (Mac)
+2. Navigate to your silhouette-html folder
+3. Open the "images" folder
+4. Drag and drop all 12 JPG files into this folder
+5. Wait for the copy operation to complete
+6. Verify all 12 files are there
+
+METHOD 2: COMMAND LINE (For Linux/Mac Terminal)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+If your images are in a folder called "Downloads":
+
+1. Open Terminal
+2. Run this command:
+   cp ~/Downloads/*.jpg ~/silhouette-html/images/
+
+3. Verify the copy worked:
+   ls ~/silhouette-html/images/
+
+4. You should see all 12 JPG files listed
+
+METHOD 3: MANUAL COPY-PASTE (Universal)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Locate your 12 JPG files on your computer
+2. Select all 12 files
+3. Right-click and choose "Copy"
+4. Navigate to silhouette-html/images/
+5. Right-click and choose "Paste"
+6. Wait for the operation to complete
+
+================================================================================
+STEP 4: VERIFY THE IMAGES ARE IN PLACE
+================================================================================
+
+After adding the images, verify they're in the correct location:
+
+USING FILE EXPLORER:
+1. Open silhouette-html folder
+2. Open the images subfolder
+3. You should see exactly 12 JPG files:
+   - imaginari.jpg
+   - invicto.jpg
+   - brown-orchid.jpg
+   - million-royal.jpg
+   - intense-wayfarer.jpg
+   - venti.jpg
+   - delilah.jpg
+   - elysia.jpg
+   - pleasant.jpg
+   - mousuf.jpg
+   - dolores.jpg
+   - classy.jpg
+
+USING COMMAND LINE:
+1. Open Terminal
+2. Run: ls ~/silhouette-html/images/
+3. You should see all 12 filenames listed
+
+================================================================================
+STEP 5: TEST THE WEBSITE
+================================================================================
+
+Now that images are added, test the website:
+
+1. Open index.html in a web browser
+   - Right-click on index.html
+   - Select "Open with" → Choose your browser
+   - Or drag index.html into your browser
+
+2. Check the Home Page:
+   - Hero section should show the Brown Orchid image
+   - Featured Fragrances section should show 4 products with images
+   - All images should load without errors
+
+3. Check the Collection Page:
+   - Click "Collection" in the navigation menu
+   - All 12 products should display with images
+   - Images should be arranged in a grid
+
+4. Test on Mobile:
+   - Resize your browser window to simulate mobile
+   - Or open on an actual phone
+   - Images should be responsive and look good
+
+5. Test Filtering:
+   - On collection page, click "MASCULINE", "FEMININE", "ALL"
+   - Only the selected products should display
+   - Images should remain visible
+
+If all images display correctly, you're done! The website is ready to use.
+
+================================================================================
+TROUBLESHOOTING: IMAGES NOT SHOWING
+================================================================================
+
+If images don't appear on the website, check these common issues:
+
+ISSUE 1: Images in wrong folder
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Solution:
+- Verify images are in silhouette-html/images/ (not in root folder)
+- Check that the "images" folder exists
+- Use Method 1 (File Explorer) to confirm visually
+
+ISSUE 2: Filenames don't match exactly
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Solution:
+- Rename files to match EXACTLY (case-sensitive):
+  ✓ imaginari.jpg (not Imaginari.jpg or imaginari.JPG)
+  ✓ brown-orchid.jpg (not brown_orchid.jpg or brown orchid.jpg)
+- Use hyphens (-) not underscores (_) or spaces
+- Use lowercase letters
+
+ISSUE 3: Wrong file format
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Solution:
+- Ensure all files are JPG/JPEG format
+- Not PNG, GIF, WebP, or other formats
+- File extension must be .jpg (not .jpeg, .JPG, or .JPEG)
+
+ISSUE 4: Browser cache issue
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Solution:
+- Hard refresh your browser: Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)
+- Or clear browser cache and reload
+- Try opening in a different browser
+
+ISSUE 5: File permissions
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Solution (Mac/Linux):
+- Open Terminal
+- Run: chmod 644 ~/silhouette-html/images/*.jpg
+- This ensures files are readable
+
+================================================================================
+STEP 6: OPTIMIZE IMAGES (OPTIONAL)
+================================================================================
+
+For faster website loading, you can optimize your images:
+
+1. RESIZE IMAGES
+   - Reduce dimensions to 600x600 pixels (max)
+   - Use free tools: TinyPNG, ImageOptim, or Squoosh
+
+2. COMPRESS FILE SIZE
+   - Aim for 50-200KB per image
+   - Larger files slow down the website
+   - Use online tools: TinyJPG, Compressor.io
+
+3. USE CONSISTENT DIMENSIONS
+   - All product images should be the same size
+   - Recommended: 600x600 pixels (square format)
+   - This ensures uniform grid layout
+
+================================================================================
+UNDERSTANDING HOW IMAGES ARE REFERENCED
+================================================================================
+
+The HTML files already contain references to these images. Here's how it works:
+
+In index.html, the Featured Products section has:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+<img src="images/brown-orchid.jpg" alt="Brown Orchid" class="product-image">
+
+Breaking this down:
+- src="images/brown-orchid.jpg"  ← Path to the image file
+- images/                        ← Folder name
+- brown-orchid.jpg              ← Exact filename (must match!)
+- alt="Brown Orchid"            ← Description (for accessibility)
+
+The HTML is already set up correctly. You just need to add the actual JPG files
+to the images/ folder with the correct filenames.
+
+================================================================================
+MANUAL IMAGE REFERENCE LIST
+================================================================================
+
+Here's a complete reference of all image references in the website:
+
+HOME PAGE (index.html):
+- Hero background: images/brown-orchid.jpg
+- Featured: images/brown-orchid.jpg (Unisex)
+- Featured: images/intense-wayfarer.jpg (Masculine)
+- Featured: images/delilah.jpg (Feminine)
+- Featured: images/venti.jpg (Masculine)
+
+COLLECTION PAGE (collection.html) - All 12:
+1. images/imaginari.jpg (Masculine)
+2. images/invicto.jpg (Masculine)
+3. images/brown-orchid.jpg (Unisex)
+4. images/million-royal.jpg (Masculine)
+5. images/intense-wayfarer.jpg (Masculine)
+6. images/venti.jpg (Masculine)
+7. images/delilah.jpg (Feminine)
+8. images/elysia.jpg (Feminine)
+9. images/pleasant.jpg (Feminine)
+10. images/mousuf.jpg (Feminine)
+11. images/dolores.jpg (Feminine)
+12. images/classy.jpg (Feminine)
+
+All these references are already in the HTML. Just add the JPG files!
+
+================================================================================
+FREQUENTLY ASKED QUESTIONS
+================================================================================
+
+Q: Can I use PNG or GIF images instead of JPG?
+A: The website is designed for JPG. While PNG/GIF might work, JPG is
+   recommended for better compression and faster loading.
+
+Q: What if I have images with different names?
+A: You must rename them to match the filenames in the HTML exactly.
+   Use the list provided in this guide.
+
+Q: Can I change the image filenames in the HTML?
+A: Yes, but it's easier to rename your images to match the HTML.
+   If you want to change HTML filenames, search and replace in the
+   HTML files (use a text editor like Notepad++).
+
+Q: How do I know if images are the right size?
+A: Open an image file on your computer. Right-click → Properties (Windows)
+   or Get Info (Mac). Look for dimensions. Recommended: 600x600 pixels.
+
+Q: Can I add more than 12 products?
+A: Yes! See the README.txt file for instructions on adding new products.
+
+Q: Do I need to edit any HTML code?
+A: No! Just add the JPG files to the images/ folder. The HTML is already
+   set up with the correct filenames and paths.
+
+Q: What if I upload the website to the internet?
+A: Make sure to upload the images/ folder along with all HTML/CSS/JS files.
+   The folder structure must remain the same.
+
+================================================================================
+FINAL CHECKLIST
+================================================================================
+
+Before considering the website complete, verify:
+
+☐ All 12 JPG files are in silhouette-html/images/
+☐ Filenames match exactly (lowercase, hyphens, .jpg)
+☐ Images display on index.html (home page)
+☐ Images display on collection.html (all 12)
+☐ Images display on mobile (resize browser to test)
+☐ Product filtering works (ALL, MASCULINE, FEMININE)
+☐ WhatsApp buttons work on all pages
+☐ Navigation menu works on mobile (hamburger menu)
+☐ Email signup form works
+☐ Contact form works
+☐ FAQ accordion works on contact page
+☐ Website looks good on desktop and mobile
+
+If all checkboxes are complete, your SILHOUETTE website is ready to launch!
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+1. Add the 12 product images using the methods above
+2. Test the website thoroughly
+3. Deploy to a web hosting service (Netlify, Vercel, etc.)
+4. Share the website URL with customers
+5. Monitor WhatsApp for incoming orders
+
+For deployment help, see the README.txt file.
+
+================================================================================
+SUPPORT
+================================================================================
+
+If you encounter issues:
+
+1. Check the TROUBLESHOOTING section above
+2. Review the README.txt file
+3. Verify all filenames match exactly
+4. Try opening the website in a different browser
+5. Clear your browser cache and reload
+
+Email: silhouette.sa80@gmail.com
+WhatsApp: +27 78 514 8634
+
+================================================================================

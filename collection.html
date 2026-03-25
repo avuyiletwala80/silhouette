@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Collection - SILHOUETTE</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo">S I L H O U E T T E</a>
+      <button class="nav-toggle">☰</button>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="collection.html">Collection</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- COLLECTION HERO -->
+  <section class="featured-section">
+    <div class="container">
+      <h1 style="text-align: center; color: white;">The Collection</h1>
+      <p style="text-align: center; color: #CCCCCC; max-width: 800px; margin: 0 auto 2rem;">12 fragrances. Curated from the houses of the UAE.</p>
+
+      <!-- FILTER BAR -->
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">ALL</button>
+        <button class="filter-btn" data-filter="masculine">MASCULINE</button>
+        <button class="filter-btn" data-filter="feminine">FEMININE</button>
+      </div>
+
+      <!-- PRODUCTS GRID -->
+      <div class="products-grid">
+        <!-- 1. IMAGINARI JACQUES YVES -->
+        <div class="product-card" data-gender="masculine">
+          <img src="images/imaginari.jpg" alt="Imaginari Jacques Yves" class="product-image">
+          <div class="product-info">
+            <div class="product-name">Imaginari Jacques Yves</div>
+            <div class="product-gender">Masculine</div>
+            <div class="product-hook">The scent of somewhere you haven't been yet — but already know you belong.</div>
+            <div class="product-price">R549</div>
+            <button class="btn btn-secondary" onclick="window.location.href='https://wa.me/27785148634?text=Hi%20SILHOUETTE%2C%20I%27d%20like%20to%20order%20IMAGINARI%20JACQUES%20YVES'">Order via WhatsApp</button>
+          </div>
+        </div>
+
+        <!-- 2. INVICTO -->
+        <div class="product-card" data-gender="masculine">
+          <img src="images/invicto.jpg" alt="Invicto" class="product-image">
+          <div class="product-info">
+            <div class="product-name">Invicto</div>
+            <div class="product-gender">Masculine</div>
+            <div class="product-hook">It does not ask for attention. It commands it.</div>
+            <div class="product-price">R449</div>
+            <button class="btn btn-secondary" onclick="window.location.href='https://wa.me/27785148634?text=Hi%20SILHOUETTE%2C%20I%27d%20like%20to%20order%20INVICTO'">Order via WhatsApp</button>
+          </div>
+        </div>
+
+        <!-- 3. BROWN ORCHID -->
+        <div class="product-card" data-gender="unisex">
+          <img src="images/brown-orchid.jpg" alt="Brown Orchid" class="product-image">
+          <div class="product-info">
+            <div class="product-name">Brown Orchid</div>
+            <div class="product-gender">Unisex</div>
+            <div class="product-hook">The scent of velvet in a dark room — rich, textured, impossible to ignore.</div>
+            <div class="product-price">R799</div>
+            <button class="btn btn-secondary" onclick="window.location.href='https://wa.me/27785148634?text=Hi%20SILHOUETTE%2C%20I%27d%20like%20to%20order%20BROWN%20ORCHID'">Order via WhatsApp</button>
+          </div>
+        </div>
+
+        <!-- 4. MILLION ROYAL -->
+        <div class="product-card" data-gender="masculine">
+          <img src="images/million-royal.jpg" alt="Million Royal" class="product-image">
+          <div class="product-info">
+            <div class="product-name">Million Royal</div>
+            <div class="product-gender">Masculine</div>
+            <div class="product-hook">The fragrance that made people look twice. Still doing it.</div>
+            <div class="product-price">R699</div>
+            <button class="btn btn-secondary" onclick="window.location.href='https://wa.me/27785148634?text=Hi%20SILHOUETTE%2C%20I%27d%20like%20to%20order%20MILLION%20ROYAL'">Order via WhatsApp</button>
+          </div>
+        </div>
+
+        <!-- 5. INTENSE WAYFARER -->
+        <div class="product-card" data-gender="masculine">
+          <img src="images/intense-wayfarer.jpg" alt="Intense Wayfarer" class="product-image">
+          <div class="product-info">
+            <div class="product-name">Intense Wayfarer</div>
+            <div class="product-gender">Masculine</div>
+            <div class="product-hook">Some people carry a destination with them. This is their scent.</div>
+            <div class="product-price">R649</div>
+            <button class="btn btn-secondary" onclick="window.location.href='https://wa.me/27785148634?text=Hi%20SILHOUETTE%2C%20I%27d%20like%20to%20order%20INTENSE%20WAYFARER'">Order via WhatsApp</button>
+          </div>
+        </div>
+
+        <!-- 6. VENTI -->
+        <div class="product-card" data-gender="masculine">
+          <img src="images/venti.jpg" alt="Venti" class="product-image">
+          <div class="product-info">
+            <div class="product-name">Venti</div>
+            <div class="product-gender">Masculine</div>
+            <div class="product-hook">Power that moves quietly. Like the wind before the storm.</div>
+            <div class="product-price">R699</div>
+            <button class="btn btn-secondary" onclick="window.location.href='https://wa.me/27785148634?text=Hi%20SILHOUETTE%2C%20I%27d%20like%20to%20order%20VENTI'">Order via WhatsApp</button>
+          </div>
+        </div>
+
+        <!-- 7. DELILAH POUR FEMME -->
+        <div class="product-card" data-gender="feminine">
+          <img src="images/delilah.jpg" alt="Delilah Pour Femme" class="product-image">
+          <div class="product-info">
+            <div class="product-name">Delilah Pour Femme</div>
+            <div class="product-gender">Feminine</div>
+            <div class="product-hook">Ancient femininity. Entirely modern allure.</div>
+            <div class="product-price">R549</div>
+            <button class="btn btn-secondary" onclick="window.location.href='https://wa.me/27785148634?text=Hi%20SILHOUETTE%2C%20I%27d%20like%20to%20order%20DELILAH%20POUR%20FEMME'">Order via WhatsApp</button>
+          </div>
+        </div>
+
+        <!-- 8. ELYSIA MARSHMALLOW -->
+        <div class="product-card" data-gender="feminine">
+          <img src="images/elysia.jpg" alt="Elysia Marshmallow" class="product-image">
+          <div class="product-info">
+            <div class="product-name">Elysia Marshmallow</div>
+            <div class="product-gender">Feminine</div>
+            <div class="product-hook">The feeling of arriving somewhere you were meant to be.</div>
+            <div class="product-price">R499</div>
+            <button class="btn btn-secondary" onclick="window.location.href='https://wa.me/27785148634?text=Hi%20SILHOUETTE%2C%20I%27d%20like%20to%20order%20ELYSIA%20MARSHMALLOW'">Order via WhatsApp</button>
+          </div>
+        </div>
+
+        <!-- 9. PLEASANT -->
+        <div class="product-card" data-gender="feminine">
+          <img src="images/pleasant.jpg" alt="Pleasant" class="product-image">
+          <div class="product-info">
+            <div class="product-name">Pleasant</div>
+            <div class="product-gender">Feminine</div>
+            <div class="product-hook">Soft enough to be remembered. Warm enough to be missed.</div>
+            <div class="product-price">R449</div>
+            <button class="btn btn-secondary" onclick="window.location.href='https://wa.me/27785148634?text=Hi%20SILHOUETTE%2C%20I%27d%20like%20to%20order%20PLEASANT'">Order via WhatsApp</button>
+          </div>
+        </div>
+
+        <!-- 10. MOUSUF WARDI -->
+        <div class="product-card" data-gender="feminine">
+          <img src="images/mousuf.jpg" alt="Mousuf Wardi" class="product-image">
+          <div class="product-info">
+            <div class="product-name">Mousuf Wardi</div>
+            <div class="product-gender">Feminine</div>
+            <div class="product-hook">Wrapped in rose and warmth, like a gift chosen specifically for you.</div>
+            <div class="product-price">R549</div>
+            <button class="btn btn-secondary" onclick="window.location.href='https://wa.me/27785148634?text=Hi%20SILHOUETTE%2C%20I%27d%20like%20to%20order%20MOUSUF%20WARDI'">Order via WhatsApp</button>
+          </div>
+        </div>
+
+        <!-- 11. DOLORES POUR FEMME -->
+        <div class="product-card" data-gender="feminine">
+          <img src="images/dolores.jpg" alt="Dolores Pour Femme" class="product-image">
+          <div class="product-info">
+            <div class="product-name">Dolores Pour Femme</div>
+            <div class="product-gender">Feminine</div>
+            <div class="product-hook">Deep, considered, and quietly magnetic.</div>
+            <div class="product-price">R549</div>
+            <button class="btn btn-secondary" onclick="window.location.href='https://wa.me/27785148634?text=Hi%20SILHOUETTE%2C%20I%27d%20like%20to%20order%20DOLORES%20POUR%20FEMME'">Order via WhatsApp</button>
+          </div>
+        </div>
+
+        <!-- 12. CLASSY -->
+        <div class="product-card" data-gender="feminine">
+          <img src="images/classy.jpg" alt="Classy" class="product-image">
+          <div class="product-info">
+            <div class="product-name">Classy</div>
+            <div class="product-gender">Feminine</div>
+            <div class="product-hook">The scent of a woman who knew exactly what she was doing before she walked in.</div>
+            <div class="product-price">R599</div>
+            <button class="btn btn-secondary" onclick="window.location.href='https://wa.me/27785148634?text=Hi%20SILHOUETTE%2C%20I%27d%20like%20to%20order%20CLASSY'">Order via WhatsApp</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">S I L H O U E T T E</div>
+      <div class="footer-social">
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+      </div>
+      <div class="footer-contact">
+        WhatsApp: <a href="https://wa.me/27785148634">+27 78 514 8634</a>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="collection.html">Collection</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-copyright">
+        © 2026 SILHOUETTE. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/27785148634" class="whatsapp-btn" title="Order on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.255.949c-1.238.503-2.37 1.237-3.285 2.144-1.831 1.832-2.911 4.28-2.911 6.88 0 1.782.469 3.53 1.36 5.115l-1.44 5.256 5.37-1.405c1.522.823 3.285 1.26 5.105 1.26 5.861 0 10.63-4.769 10.63-10.63 0-2.839-1.143-5.512-3.22-7.589-2.077-2.077-4.85-3.22-7.589-3.22"/>
+    </svg>
+  </a>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

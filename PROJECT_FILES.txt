@@ -1,0 +1,275 @@
+================================================================================
+SILHOUETTE - PROJECT FILES SUMMARY
+================================================================================
+
+FRONTEND FILES (HTML/CSS/JavaScript)
+================================================================================
+
+index.html
+  Purpose: Home page with hero, featured products, email signup
+  Size: ~8KB
+  Key sections: Hero, brand statement, featured products, discovery banner, 
+                three-column section, email signup, footer
+
+collection.html
+  Purpose: Display all 12 fragrances with filtering
+  Size: ~12KB
+  Features: Product grid, filter buttons (ALL/MASCULINE/FEMININE), 
+            responsive layout
+
+about.html
+  Purpose: Brand story and founder information
+  Size: ~4KB
+  Content: Brand mission, founder statement, CTA button
+
+contact.html
+  Purpose: Contact page with form, WhatsApp CTA, FAQ
+  Size: ~6KB
+  Features: WhatsApp button, contact form, FAQ accordion
+
+styles.css
+  Purpose: All styling for the website
+  Size: ~17KB
+  Includes: Colors, typography, responsive design, animations,
+            all component styles
+
+scripts.js
+  Purpose: JavaScript functionality and backend integration
+  Size: ~5KB
+  Features: Hamburger menu, product filtering, FAQ accordion,
+            form handling, API integration
+
+================================================================================
+BACKEND FILES (Node.js/Database)
+================================================================================
+
+backend-server.js
+  Purpose: Node.js Express server with API endpoints
+  Size: ~5KB
+  Endpoints:
+    - POST /api/contact - Contact form submissions
+    - POST /api/subscribe - Email newsletter signup
+    - POST /api/order - Order submissions
+    - GET /api/orders - Retrieve all orders
+    - GET /api/subscribers - Retrieve all subscribers
+
+package.json
+  Purpose: Node.js dependencies and project metadata
+  Size: ~1KB
+  Dependencies: express, cors, dotenv, @supabase/supabase-js, @sendgrid/mail
+
+supabase-setup.sql
+  Purpose: SQL commands to set up Supabase database
+  Size: ~3KB
+  Creates: orders, subscribers, contacts, products tables
+  Includes: Indexes, RLS policies, analytics views
+
+.gitignore
+  Purpose: Prevent sensitive files from being committed
+  Includes: .env files, node_modules, IDE files, OS files
+
+================================================================================
+DOCUMENTATION FILES
+================================================================================
+
+README.txt
+  Purpose: Quick reference guide
+  Covers: Project structure, how to add images, update prices,
+          add new products, deployment basics
+
+PRODUCT_IMAGES_GUIDE.txt
+  Purpose: Detailed guide for adding product images
+  Size: ~14KB
+  Includes: Step-by-step instructions, troubleshooting,
+            image optimization tips, complete checklist
+
+BACKEND_SETUP.md
+  Purpose: Complete backend configuration guide
+  Size: ~8KB
+  Covers: Supabase setup, SendGrid setup, deployment options,
+          testing, troubleshooting
+
+COMPLETE_SETUP_GUIDE.md
+  Purpose: End-to-end setup and deployment guide
+  Size: ~10KB
+  Includes: Quick start, deployment options, feature comparison,
+            testing checklist, customization guide
+
+PROJECT_FILES.txt
+  Purpose: This file - summary of all project files
+
+================================================================================
+CONFIGURATION FILES
+================================================================================
+
+.env.example (template - rename to .env for backend)
+  Purpose: Environment variables template
+  Contains: SUPABASE_URL, SUPABASE_ANON_KEY, SENDGRID_API_KEY, etc.
+  Note: Never commit actual .env file to GitHub
+
+.gitignore
+  Purpose: Prevent sensitive files from being committed to GitHub
+  Protects: .env, node_modules, IDE files, logs
+
+================================================================================
+DIRECTORY STRUCTURE
+================================================================================
+
+silhouette-html/
+├── Frontend
+│   ├── index.html
+│   ├── collection.html
+│   ├── about.html
+│   ├── contact.html
+│   ├── styles.css
+│   └── scripts.js
+│
+├── Backend
+│   ├── backend-server.js
+│   ├── package.json
+│   └── supabase-setup.sql
+│
+├── Documentation
+│   ├── README.txt
+│   ├── PRODUCT_IMAGES_GUIDE.txt
+│   ├── BACKEND_SETUP.md
+│   ├── COMPLETE_SETUP_GUIDE.md
+│   └── PROJECT_FILES.txt (this file)
+│
+├── Configuration
+│   ├── .gitignore
+│   └── package.json
+│
+└── images/
+    └── (12 product JPG files go here)
+
+================================================================================
+FILE PURPOSES AT A GLANCE
+================================================================================
+
+MUST HAVE (Website won't work without these):
+  ✓ index.html, collection.html, about.html, contact.html
+  ✓ styles.css
+  ✓ scripts.js
+  ✓ images/ folder with 12 JPG files
+
+BACKEND (Optional but recommended):
+  ✓ backend-server.js
+  ✓ package.json
+  ✓ supabase-setup.sql
+
+DOCUMENTATION (Helpful guides):
+  ✓ README.txt
+  ✓ PRODUCT_IMAGES_GUIDE.txt
+  ✓ BACKEND_SETUP.md
+  ✓ COMPLETE_SETUP_GUIDE.md
+
+================================================================================
+WHAT EACH FILE DOES
+================================================================================
+
+FRONTEND FLOW:
+  1. User opens index.html
+  2. Browser loads styles.css (styling)
+  3. Browser loads scripts.js (functionality)
+  4. User interacts with website
+  5. Forms send data to backend (if deployed)
+
+BACKEND FLOW:
+  1. Frontend sends form data to backend-server.js
+  2. Backend validates and stores in Supabase (supabase-setup.sql)
+  3. Backend sends emails via SendGrid
+  4. Backend returns response to frontend
+
+================================================================================
+DEPLOYMENT CHECKLIST
+================================================================================
+
+Before deploying:
+  ☐ All 12 product images in images/ folder
+  ☐ Website tested locally
+  ☐ All links working
+  ☐ Forms tested
+  ☐ Mobile responsive tested
+
+For GitHub Pages (static):
+  ☐ Push HTML/CSS/JS to GitHub
+  ☐ Enable GitHub Pages in settings
+  ☐ Website live at: https://avuyiletwala80.github.io/silhouette
+
+For Full Stack (with backend):
+  ☐ Create Supabase account
+  ☐ Run SQL from supabase-setup.sql
+  ☐ Create SendGrid account
+  ☐ Deploy backend-server.js to Railway/Render
+  ☐ Update API_BASE_URL in scripts.js
+  ☐ Push to GitHub
+  ☐ Test all forms
+
+================================================================================
+CUSTOMIZATION GUIDE
+================================================================================
+
+To change colors:
+  → Edit :root variables in styles.css
+
+To change fonts:
+  → Edit font links in HTML files
+  → Update font-family in styles.css
+
+To add new products:
+  → See README.txt section "How to Add a New Product"
+
+To update prices:
+  → Search for price in HTML files and update
+
+To change brand name:
+  → Replace "SILHOUETTE" throughout HTML files
+  → Update styles and colors as needed
+
+To change WhatsApp number:
+  → Search for "+27 78 514 8634" and replace
+
+To change email:
+  → Search for "silhouette.sa80@gmail.com" and replace
+
+================================================================================
+SUPPORT & RESOURCES
+================================================================================
+
+Documentation Files:
+  - README.txt - Quick reference
+  - PRODUCT_IMAGES_GUIDE.txt - Image setup
+  - BACKEND_SETUP.md - Backend configuration
+  - COMPLETE_SETUP_GUIDE.md - Full setup walkthrough
+
+GitHub Repository:
+  https://github.com/avuyiletwala80/silhouette
+
+External Resources:
+  - Supabase Docs: https://supabase.com/docs
+  - SendGrid Docs: https://docs.sendgrid.com
+  - Express.js Docs: https://expressjs.com
+  - Node.js Docs: https://nodejs.org/docs
+
+Contact:
+  Email: silhouette.sa80@gmail.com
+  WhatsApp: +27 78 514 8634
+
+================================================================================
+VERSION INFORMATION
+================================================================================
+
+Project: SILHOUETTE - Luxury Fragrance Boutique
+Version: 1.0
+Created: March 2026
+Location: South Africa
+GitHub: https://github.com/avuyiletwala80/silhouette
+
+Frontend: Pure HTML/CSS/JavaScript (no frameworks)
+Backend: Node.js + Express
+Database: Supabase (PostgreSQL)
+Email: SendGrid
+Hosting: GitHub Pages (frontend) + Railway/Render (backend)
+
+================================================================================

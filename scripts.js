@@ -1,11 +1,8 @@
 /* ============================================
    SILHOUETTE - Shared JavaScript
    Features: Hamburger menu, product filtering, FAQ accordion, form handling
-   Backend API integration for orders, contacts, and subscriptions
+   Static version - no backend required
    ============================================ */
-
-// Backend API URL (change this to your deployed backend)
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000/api';
 
 document.addEventListener('DOMContentLoaded', function() {
   const navToggle = document.querySelector('.nav-toggle');
@@ -90,71 +87,44 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // ============================================
-  // EMAIL SIGNUP FORM WITH BACKEND
+  // EMAIL SIGNUP FORM (Static - No Backend)
   // ============================================
 
   const emailForm = document.getElementById('emailForm');
   if (emailForm) {
-    emailForm.addEventListener('submit', async function(e) {
+    emailForm.addEventListener('submit', function(e) {
       e.preventDefault();
       const emailInput = this.querySelector('input[type="email"]');
       const successMsg = this.parentElement.querySelector('.email-success');
       const email = emailInput.value;
 
-      try {
-        // Try to send to backend
-        const response = await fetch(`${API_BASE_URL}/subscribe`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email })
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-          // Success - show message
-          successMsg.classList.add('show');
-          emailInput.value = '';
-
-          // Hide success message after 3 seconds
-          setTimeout(() => {
-            successMsg.classList.remove('show');
-          }, 3000);
-        } else {
-          // Show error or fallback
-          if (data.error === 'Already subscribed') {
-            alert('This email is already subscribed!');
-          } else {
-            // Fallback: store locally if backend fails
-            console.log('Backend unavailable, storing locally:', email);
-            successMsg.classList.add('show');
-            emailInput.value = '';
-            setTimeout(() => {
-              successMsg.classList.remove('show');
-            }, 3000);
-          }
-        }
-      } catch (error) {
-        // Fallback if backend is not available
-        console.log('Backend error, storing locally:', error);
-        successMsg.classList.add('show');
-        emailInput.value = '';
-        setTimeout(() => {
-          successMsg.classList.remove('show');
-        }, 3000);
+      // Validate email
+      if (!validateEmail(email)) {
+        alert('Please enter a valid email address');
+        return;
       }
+
+      // Show success message
+      successMsg.classList.add('show');
+      emailInput.value = '';
+
+      // Hide success message after 3 seconds
+      setTimeout(() => {
+        successMsg.classList.remove('show');
+      }, 3000);
+
+      // Log to console (for your reference)
+      console.log('Email signup:', email);
     });
   }
 
   // ============================================
-  // CONTACT FORM WITH BACKEND
+  // CONTACT FORM (Static - No Backend)
   // ============================================
 
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
+    contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
       const successMsg = this.parentElement.querySelector('.form-success');
       
@@ -162,37 +132,26 @@ document.addEventListener('DOMContentLoaded', function() {
       const email = this.querySelector('#email').value;
       const message = this.querySelector('#message').value;
 
-      try {
-        // Send to backend
-        const response = await fetch(`${API_BASE_URL}/contact`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name, email, message })
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-          // Success
-          this.reset();
-          successMsg.classList.add('show');
-          setTimeout(() => {
-            successMsg.classList.remove('show');
-          }, 3000);
-        } else {
-          alert('Error: ' + data.error);
-        }
-      } catch (error) {
-        // Fallback if backend is not available
-        console.log('Backend error, showing local success:', error);
-        this.reset();
-        successMsg.classList.add('show');
-        setTimeout(() => {
-          successMsg.classList.remove('show');
-        }, 3000);
+      // Validate inputs
+      if (!name || !email || !message) {
+        alert('Please fill in all fields');
+        return;
       }
+
+      if (!validateEmail(email)) {
+        alert('Please enter a valid email address');
+        return;
+      }
+
+      // Show success message
+      this.reset();
+      successMsg.classList.add('show');
+      setTimeout(() => {
+        successMsg.classList.remove('show');
+      }, 3000);
+
+      // Log to console (for your reference)
+      console.log('Contact submission:', { name, email, message });
     });
   }
 
@@ -241,17 +200,12 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // ============================================
-  // WHATSAPP ORDER TRACKING (Optional)
+  // WHATSAPP ORDER TRACKING
   // ============================================
 
-  // Add data attributes to WhatsApp buttons for tracking
   document.querySelectorAll('.whatsapp-btn').forEach(btn => {
     btn.addEventListener('click', function() {
-      // Track WhatsApp clicks (optional analytics)
       console.log('WhatsApp button clicked');
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'whatsapp_click');
-      }
     });
   });
 
@@ -259,63 +213,23 @@ document.addEventListener('DOMContentLoaded', function() {
   // FORM VALIDATION HELPERS
   // ============================================
 
-  function validateEmail(email) {
+  window.validateEmail = function(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
-  }
+  };
 
-  function validatePhone(phone) {
-    // Accept various phone formats
+  window.validatePhone = function(phone) {
     const re = /^[\d\s\-\+\(\)]+$/;
     return re.test(phone) && phone.replace(/\D/g, '').length >= 10;
-  }
+  };
 
   // ============================================
-  // HELPER FUNCTION: Send Order to Backend
+  // WHATSAPP ORDER FUNCTION
   // ============================================
 
-  window.submitOrder = async function(productName) {
-    const name = prompt('Enter your name:');
-    if (!name) return;
-
-    const email = prompt('Enter your email:');
-    if (!email || !validateEmail(email)) {
-      alert('Please enter a valid email');
-      return;
-    }
-
-    const phone = prompt('Enter your phone number (optional):');
-    const address = prompt('Enter your delivery address:');
-
-    try {
-      const response = await fetch(`${API_BASE_URL}/order`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          phone,
-          product: productName,
-          address,
-          quantity: 1
-        })
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert('Order received! We\'ll confirm via WhatsApp shortly.');
-        // Redirect to WhatsApp
-        window.location.href = `https://wa.me/27785148634?text=Hi%20SILHOUETTE%2C%20I%27d%20like%20to%20order%20${encodeURIComponent(productName)}`;
-      } else {
-        alert('Error: ' + data.error);
-      }
-    } catch (error) {
-      console.log('Backend error, redirecting to WhatsApp:', error);
-      // Fallback to WhatsApp if backend fails
-      window.location.href = `https://wa.me/27785148634?text=Hi%20SILHOUETTE%2C%20I%27d%20like%20to%20order%20${encodeURIComponent(productName)}`;
-    }
+  window.submitOrder = function(productName) {
+    // Direct WhatsApp link - no backend needed
+    const message = `Hi SILHOUETTE, I'd like to order ${productName}`;
+    window.location.href = `https://wa.me/27785148634?text=${encodeURIComponent(message)}`;
   };
 });

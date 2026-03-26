@@ -12,7 +12,7 @@
   "keywords": [
     "fragrance",
     "luxury",
-    "dubai",
+    "south-africa",
     "ecommerce"
   ],
   "author": "SILHOUETTE",
@@ -22,8 +22,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "@supabase/supabase-js": "^2.26.0",
-    "@sendgrid/mail": "^7.7.0",
-    "axios": "^1.4.0"
+    "@sendgrid/mail": "^7.7.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"

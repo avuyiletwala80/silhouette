@@ -3,18 +3,13 @@
    Handles email, database, and order management
    ============================================ */
 
-// This is a Node.js backend server file
-// To use this, you need to:
-// 1. Install Node.js dependencies
-// 2. Set up environment variables
-// 3. Deploy to a server (Heroku, Railway, Render, etc.)
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { createClient } from '@supabase/supabase-js';
+import sgMail from '@sendgrid/mail';
 
-// DEPENDENCIES NEEDED:
-// npm install express cors dotenv axios supabase @sendgrid/mail
-
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+dotenv.config();
 
 const app = express();
 
@@ -26,8 +21,6 @@ app.use(express.json());
 // SUPABASE CLIENT SETUP
 // ============================================
 
-const { createClient } = require('@supabase/supabase-js');
-
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
@@ -36,8 +29,19 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 // SENDGRID EMAIL SETUP
 // ============================================
 
-const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+// ============================================
+// HEALTH CHECK ENDPOINT
+// ============================================
+
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'SILHOUETTE Backend is running',
+    timestamp: new Date().toISOString()
+  });
+});
 
 // ============================================
 // ROUTES
@@ -68,32 +72,40 @@ app.post('/api/contact', async (req, res) => {
     if (error) throw error;
 
     // Send email notification to owner
-    await sgMail.send({
-      to: process.env.SENDER_EMAIL,
-      from: process.env.SENDER_EMAIL,
-      subject: `New Contact from SILHOUETTE: ${name}`,
-      html: `
-        <h2>New Contact Message</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-        <p><small>Received at: ${new Date().toLocaleString()}</small></p>
-      `
-    });
+    try {
+      await sgMail.send({
+        to: process.env.SENDER_EMAIL,
+        from: process.env.SENDER_EMAIL,
+        subject: `New Contact from SILHOUETTE: ${name}`,
+        html: `
+          <h2>New Contact Message</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message:</strong></p>
+          <p>${message}</p>
+          <p><small>Received at: ${new Date().toLocaleString()}</small></p>
+        `
+      });
+    } catch (emailError) {
+      console.warn('Owner email failed, but contact stored:', emailError.message);
+    }
 
     // Send confirmation email to customer
-    await sgMail.send({
-      to: email,
-      from: process.env.SENDER_EMAIL,
-      subject: 'Thank you for contacting SILHOUETTE',
-      html: `
-        <h2>Thank you, ${name}!</h2>
-        <p>We received your message and will get back to you shortly.</p>
-        <p>In the meantime, feel free to order via WhatsApp: <strong>+27 78 514 8634</strong></p>
-        <p>Best regards,<br>SILHOUETTE Team</p>
-      `
-    });
+    try {
+      await sgMail.send({
+        to: email,
+        from: process.env.SENDER_EMAIL,
+        subject: 'Thank you for contacting SILHOUETTE',
+        html: `
+          <h2>Thank you, ${name}!</h2>
+          <p>We received your message and will get back to you shortly.</p>
+          <p>In the meantime, feel free to order via WhatsApp: <strong>+27 78 514 8634</strong></p>
+          <p>Best regards,<br>SILHOUETTE Team</p>
+        `
+      });
+    } catch (emailError) {
+      console.warn('Customer email failed, but contact stored:', emailError.message);
+    }
 
     res.json({ success: true, message: 'Contact message sent successfully' });
   } catch (error) {
@@ -134,23 +146,27 @@ app.post('/api/subscribe', async (req, res) => {
     if (error) throw error;
 
     // Send welcome email
-    await sgMail.send({
-      to: email,
-      from: process.env.SENDER_EMAIL,
-      subject: 'Welcome to SILHOUETTE Newsletter',
-      html: `
-        <h2>Welcome to SILHOUETTE!</h2>
-        <p>Thank you for subscribing to our newsletter.</p>
-        <p>You'll now receive updates about:</p>
-        <ul>
-          <li>New fragrance arrivals</li>
-          <li>Exclusive drops</li>
-          <li>Fragrance stories and tips</li>
-        </ul>
-        <p>Explore our collection: <a href="https://silhouette.com/collection">View Fragrances</a></p>
-        <p>Best regards,<br>SILHOUETTE Team</p>
-      `
-    });
+    try {
+      await sgMail.send({
+        to: email,
+        from: process.env.SENDER_EMAIL,
+        subject: 'Welcome to SILHOUETTE Newsletter',
+        html: `
+          <h2>Welcome to SILHOUETTE!</h2>
+          <p>Thank you for subscribing to our newsletter.</p>
+          <p>You'll now receive updates about:</p>
+          <ul>
+            <li>New fragrance arrivals</li>
+            <li>Exclusive drops</li>
+            <li>Fragrance stories and tips</li>
+          </ul>
+          <p>Explore our collection: <a href="https://avuyiletwala80.github.io/silhouette/collection.html">View Fragrances</a></p>
+          <p>Best regards,<br>SILHOUETTE Team</p>
+        `
+      });
+    } catch (emailError) {
+      console.warn('Welcome email failed, but subscriber stored:', emailError.message);
+    }
 
     res.json({ success: true, message: 'Successfully subscribed' });
   } catch (error) {
@@ -187,36 +203,44 @@ app.post('/api/order', async (req, res) => {
     if (error) throw error;
 
     // Send order confirmation to customer
-    await sgMail.send({
-      to: email,
-      from: process.env.SENDER_EMAIL,
-      subject: 'Order Received - SILHOUETTE',
-      html: `
-        <h2>Thank you for your order, ${name}!</h2>
-        <p><strong>Product:</strong> ${product}</p>
-        <p><strong>Quantity:</strong> ${quantity || 1}</p>
-        <p>We'll confirm your order details via WhatsApp shortly.</p>
-        <p><strong>WhatsApp:</strong> +27 78 514 8634</p>
-        <p>Best regards,<br>SILHOUETTE Team</p>
-      `
-    });
+    try {
+      await sgMail.send({
+        to: email,
+        from: process.env.SENDER_EMAIL,
+        subject: 'Order Received - SILHOUETTE',
+        html: `
+          <h2>Thank you for your order, ${name}!</h2>
+          <p><strong>Product:</strong> ${product}</p>
+          <p><strong>Quantity:</strong> ${quantity || 1}</p>
+          <p>We'll confirm your order details via WhatsApp shortly.</p>
+          <p><strong>WhatsApp:</strong> +27 78 514 8634</p>
+          <p>Best regards,<br>SILHOUETTE Team</p>
+        `
+      });
+    } catch (emailError) {
+      console.warn('Order confirmation email failed, but order stored:', emailError.message);
+    }
 
     // Send order notification to owner
-    await sgMail.send({
-      to: process.env.SENDER_EMAIL,
-      from: process.env.SENDER_EMAIL,
-      subject: `New Order: ${product} from ${name}`,
-      html: `
-        <h2>New Order Received</h2>
-        <p><strong>Customer:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
-        <p><strong>Product:</strong> ${product}</p>
-        <p><strong>Quantity:</strong> ${quantity || 1}</p>
-        <p><strong>Address:</strong> ${address || 'Not provided'}</p>
-        <p><small>Order ID: ${data[0].id}</small></p>
-      `
-    });
+    try {
+      await sgMail.send({
+        to: process.env.SENDER_EMAIL,
+        from: process.env.SENDER_EMAIL,
+        subject: `New Order: ${product} from ${name}`,
+        html: `
+          <h2>New Order Received</h2>
+          <p><strong>Customer:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
+          <p><strong>Product:</strong> ${product}</p>
+          <p><strong>Quantity:</strong> ${quantity || 1}</p>
+          <p><strong>Address:</strong> ${address || 'Not provided'}</p>
+          <p><small>Order ID: ${data[0].id}</small></p>
+        `
+      });
+    } catch (emailError) {
+      console.warn('Owner order email failed, but order stored:', emailError.message);
+    }
 
     res.json({ success: true, message: 'Order received', orderId: data[0].id });
   } catch (error) {
@@ -225,7 +249,7 @@ app.post('/api/order', async (req, res) => {
   }
 });
 
-// 4. GET ALL ORDERS (Admin endpoint - requires authentication)
+// 4. GET ALL ORDERS (Admin endpoint)
 app.get('/api/orders', async (req, res) => {
   try {
     const { data, error } = await supabase
@@ -259,6 +283,32 @@ app.get('/api/subscribers', async (req, res) => {
   }
 });
 
+// 6. GET ALL CONTACTS (Admin endpoint)
+app.get('/api/contacts', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('contacts')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+
+    res.json({ contacts: data });
+  } catch (error) {
+    console.error('Contacts error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// ============================================
+// ERROR HANDLING
+// ============================================
+
+app.use((err, req, res, next) => {
+  console.error('Server error:', err);
+  res.status(500).json({ error: 'Internal server error' });
+});
+
 // ============================================
 // SERVER STARTUP
 // ============================================
@@ -266,9 +316,8 @@ app.get('/api/subscribers', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`SILHOUETTE Backend Server running on port ${PORT}`);
-  console.log(`Email service: ${process.env.SENDGRID_API_KEY ? 'Connected' : 'Not configured'}`);
-  console.log(`Database: ${process.env.SUPABASE_URL ? 'Connected' : 'Not configured'}`);
+  console.log(`✓ SILHOUETTE Backend Server running on port ${PORT}`);
+  console.log(`✓ Email service: ${process.env.SENDGRID_API_KEY ? 'Connected' : 'Not configured'}`);
+  console.log(`✓ Database: ${process.env.SUPABASE_URL ? 'Connected' : 'Not configured'}`);
+  console.log(`✓ Health check: http://localhost:${PORT}/health`);
 });
-
-module.exports = app;
